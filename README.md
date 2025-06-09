@@ -68,3 +68,63 @@ recall and ROC-AUC values.
    ```
    After running all cells you will obtain precision, recall and ROC-AUC
    metrics for detecting malicious clients.
+
+## Comprehensive Setup Guide
+
+Below is a concise guide on how to install dependencies and run the project.
+
+### 1. Setup Python Environment
+Create a fresh virtual environment with Python \u2265 3.8:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+Install the libraries used in the notebooks:
+
+```bash
+pip install torch==2.1.2 torchvision==0.16.2 scikit-learn==1.4.2 \
+            pandas==2.2.1 yfinance==0.2.37 numpy==1.26.4 matplotlib==3.8.4 \
+            seaborn==0.13.2 tqdm==4.66.4 notebook==7.1.1 loguru==0.7.2
+```
+
+*(Newer or slightly different package versions are fine if the exact ones aren\u2019t available.)*
+
+### 2. Verify Installation (Optional)
+You can check whether TensorFlow/TFF and other libraries load properly by running:
+
+```bash
+python LaunchingAttacks/check_libs_ok.py
+```
+
+If the setup is correct, this script will print available devices (e.g., GPU) and successfully instantiate a simple TFF computation.
+
+### 3. Run the Notebooks
+Execute the notebooks directly or via nbconvert:
+
+```bash
+# Generate the poisoned MNIST dataset
+jupyter nbconvert --execute LaunchingAttacks/poison_mnist_fed.ipynb
+
+# Train and evaluate the hybrid detection model
+jupyter nbconvert --execute DefenseTraditionalML/Mal_vs_Hon.ipynb
+```
+
+Alternatively, open them interactively:
+
+```bash
+jupyter notebook LaunchingAttacks/poison_mnist_fed.ipynb
+jupyter notebook DefenseTraditionalML/Mal_vs_Hon.ipynb
+```
+
+---
+
+### Summary
+
+1. Clone the repo and `cd` into it.
+2. Create and activate a Python virtual environment.
+3. Install the packages listed above.
+4. (Optional) Run `LaunchingAttacks/check_libs_ok.py` to verify your setup.
+5. Execute the notebooks for attacks and defense training either with `jupyter nbconvert --execute` or interactively with `jupyter notebook`.
+
